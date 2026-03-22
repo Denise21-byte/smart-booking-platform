@@ -8,10 +8,11 @@ export function useListings() {
   return useQuery({
     queryKey: ['listings', filters.placeId, filters.checkin, filters.checkout],
     queryFn: () => fetchListings(filters),
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 30,
-    retry: 2,
+    staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 60,
+    retry: false,              // ← stop retrying on failure
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }
 
@@ -22,7 +23,8 @@ export function useListingDetail(id, filters) {
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 60,
     enabled: !!id,
-    retry: 2,
+    retry: false,              // ← stop retrying on failure
+    refetchOnWindowFocus: false,
   });
 }
 

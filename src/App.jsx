@@ -16,10 +16,11 @@ import Login from './pages/Login';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,
-      gcTime: 1000 * 60 * 30,
-      retry: 2,
+      staleTime: 1000 * 60 * 10,
+      gcTime: 1000 * 60 * 60,
+      retry: false,
       refetchOnWindowFocus: false,
+      refetchOnMount: false,
     },
   },
 });
@@ -47,3 +48,4 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
